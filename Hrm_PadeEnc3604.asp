@@ -10,11 +10,11 @@
 
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="bootstrap/css/ionicons.min.css">  
+  <link rel="stylesheet" href="bootstrap/css/ionicons.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
   <!-- jvectormap -->
@@ -47,7 +47,7 @@
     <!-- Content Header (Page header) -->
     <%
     sqlTrn = "select Trd_ElementoID, Trd_Texto from HRM10002 where Trd_TransaccionID = 'EvPADE0230' and Trd_IdiomaID = '"& Lng &"'  "
-    
+
     set rsTrn = dbconn.execute(sqlTrn)
     'response.write(sqlTrn)
     if not rsTrn.eof and not rsTrn.bof then
@@ -425,7 +425,7 @@
                         Dim myMail
                         Set myMail=CreateObject("CDO.Message")
                         myMail.Subject = TskDsc
-                        msgtext = Unm & "  " & EmMs01 & "</br></br><p>" & lnki & "</br></br><p>" & lnke 
+                        msgtext = Unm & "  " & EmMs01 & "</br></br><p>" & lnki & "</br></br><p>" & lnke
     	                myMail.From = Emc
 	                    myMail.To = Jem
                         myMail.Cc = Uem
@@ -551,9 +551,6 @@
                 %>
                 <div class="box box-primary">
                     <form action="Hrm_PadeEnc3604.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Eid=" & Eid & "&Ejr=" & Ejr & "&Dsc=" & Dsc & "&Sid=" & Sid %>" name="form1a" method="post">
-                        <div class="box-header">
-                            <h3 class="box-title">Registrados</h3>
-                        </div>
                         <div class="box-body">
                             <table class="table table-bordered table-striped">
                                 <thead>
@@ -649,7 +646,7 @@
             end if
             %>
         </div>
-    
+
     </section>
     <!-- /.content -->
   </div>

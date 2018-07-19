@@ -14,12 +14,12 @@
 
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="bootstrap/css/ionicons.min.css">  
-    
+  <link rel="stylesheet" href="bootstrap/css/ionicons.min.css">
+
   <!-- jvectormap -->
   <link rel="stylesheet" href="plugins/jvectormap/jquery-jvectormap-1.2.2.css">
   <!-- Theme style -->
@@ -71,7 +71,29 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <% call hdr("Organigrama","") %>
+    <%
+    sqlTrn = "select Trd_ElementoID, Trd_Texto from HRM10002 where Trd_TransaccionID = 'DisOrg0900' and Trd_IdiomaID = '"& Lng &"'  "
+
+    set rsTrn = dbconn.execute(sqlTrn)
+    if not rsTrn.eof and not rsTrn.bof then
+        dim Elm
+        do while not rsTrn.eof
+            Elm = trim(rsTrn("Trd_ElementoID"))
+            Select Case Elm
+              Case "TitPri"
+                TitPri = trim(rsTrn("Trd_Texto"))
+              Case "SubTit"
+                SubTit = trim(rsTrn("Trd_Texto"))
+
+              Case else
+                Tb1Hd0 = trim(rsTrn("Trd_Texto"))
+            End Select
+            rsTrn.movenext
+        loop
+    end if
+    %>
+
+    <% call hdr(TitPri, SubTit) %>
 
     <!-- Main content -->
     <section class="content">
@@ -152,6 +174,20 @@
                                      "    and a.Otm_EmpresaFuente   = c.Pue_CompaniaID                     " & _
                                      "where a.Otm_Plaza_Superior = '"& trim(rs1("Otm_Plaza")) &"'          " & _
                                      "and   a.Otm_EmpresaFuente  = '"& trim(rs1("Otm_EmpresaFuente")) &"'  " & _
+                                     "and   a.Otm_Publica        = 1                                       " & _
+                                     "and   a.Otm_Estatus        = 1                                       " & _
+                                     "order by c.Pue_Descripcion                                           "
+                            sqltri = "select a.Otm_Plaza,          a.Otm_Plaza_Superior,                   " & _
+                                     "       a.Otm_EmpresaFuente,                                          " & _
+                                     "       isnull(b.Emp_NombreCompleto,'Vacante') as NombreCompleto,     " & _
+                                     "       isnull(b.Emp_Foto,'images/emp/silueta.jpg') as UrlFoto,       " & _
+                                     "       c.Pue_Descripcion                                             " & _
+                                     "from HRM10100 a left outer join HRM10220 b                           " & _
+                                     "     on a.Otm_Empleado = b.Emp_EmpleadoID                            " & _
+                                     "                      left outer join HRM10210 c                     " & _
+                                     "     on a.Otm_id_nivel_puesto = c.Pue_NivelPuestoID                  " & _
+                                     "    and a.Otm_EmpresaFuente   = c.Pue_CompaniaID                     " & _
+                                     "where a.Otm_Plaza_Superior = '"& trim(rs1("Otm_Plaza")) &"'          " & _
                                      "and   a.Otm_Publica        = 1                                       " & _
                                      "and   a.Otm_Estatus        = 1                                       " & _
                                      "order by c.Pue_Descripcion                                           "

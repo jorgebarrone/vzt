@@ -157,6 +157,22 @@
               Case "SmBtn2"
                 SmBtn2  = trim(rsTrn("Trd_Texto"))
 
+              Case "GnrSt1"
+                GnrSt1  = trim(rsTrn("Trd_Texto"))
+              Case "GnrSt2"
+                GnrSt2  = trim(rsTrn("Trd_Texto"))
+              Case "GnrSt3"
+                GnrSt3  = trim(rsTrn("Trd_Texto"))
+              Case "GnrSt4"
+                GnrSt4  = trim(rsTrn("Trd_Texto"))
+              Case "GnrSt5"
+                GnrSt5  = trim(rsTrn("Trd_Texto"))
+
+              Case "AcpEvl"
+                AcpEvl  = trim(rsTrn("Trd_Texto"))
+              Case "CntEvl"
+                CntEvl  = trim(rsTrn("Trd_Texto"))
+
               Case else
                 Tb1Hd0 = trim(rsTrn("Trd_Texto"))
             End Select
@@ -359,7 +375,7 @@
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="box" style="border-top-color: #fff">
                     <div class="box-header with-border">
-                        <h3 class="box-title"><i class="fa fa-file-text"></i>&nbsp;&nbsp;<%= BxHd01 %></h3>
+                        <h3 class="box-title"><i class="fa fa-check-circle"></i>&nbsp;&nbsp;<%= BxHd01 %></h3>
                     </div>
                     <div class="box" style="border-top-color: #d99898; border-top-width: thick">
                         <div class="box-body">
@@ -571,11 +587,12 @@
                                         end if
 
                                         '<!-- Buscamos si alguna Plaza asignada está vacante para asignar la Estructura de Colaboradores -->
-                                        sqlVcn = "select Otm_Plaza from HRM10100 where Otm_Plaza_Superior = "& PlzSup &" and Otm_Empleado = 0 "
+                                        sqlVcn = "select Otm_Plaza, Otm_EmpresaFuente from HRM10100 where Otm_Plaza_Superior = "& PlzSup &" and Otm_Empleado = 0 "
                                         set rsVcn = dbconn.execute(sqlVcn)
                                         if not rsVcn.bof and not rsVcn.eof then
                                             do while not rsVcn.eof
                                                 PlzVcn = trim(rsVcn("Otm_Plaza"))
+                                                EmpFnt = trim(rsVcn("Otm_EmpresaFuente"))
                                                 sqlClv = "select b.Psm_Estatus,        c.Emp_EmpleadoID, " & _
                                                          "       c.Emp_NombreCompleto, c.Emp_CompaniaID  " & _
                                                          "from HRM105A0 a, HRM10502 b, HRM10220 c        " & _
@@ -586,7 +603,7 @@
                                                          "and   b.Psm_Ejercicio     =  "& Ejr &"         " & _
                                                          "and   a.Psf_Seccion       = 'MAT360'           " & _
                                                          "and   c.Emp_PlazaSuperior = '"& PlzVcn &"'     " & _
-                                                         "and   c.Emp_CompaniaID    = '"&  Cid   &"'     "
+                                                         "and   c.Emp_CompaniaID    = '"& EmpFnt &"'     "
                                                 set rsClv = dbconn.execute(sqlClv)
                                                 if not rsClv.bof and not rsClv.eof then
                                                     do while not rsClv.eof
@@ -692,7 +709,7 @@
                                         Do while not rsEnc.eof
                                             if fr = 0 then
                                                 %>
-                                                <a href="#"><i class="fa fa-circle text-<%= semsec %>"></i>&nbsp;Aceptar Evaluaciones</a>
+                                                <a href="#"><i class="fa fa-circle text-<%= semsec %>"></i>&nbsp;<%= AcpEvl %></a>
                                                 <ul class="treeview-menu">
                                                 <%
                                                 fr = 1
@@ -760,7 +777,7 @@
                                         Do while not rsEnc.eof
                                             if fr = 0 then
                                                 %>
-                                                <a href="#"><i class="fa fa-circle text-<%= semsec %>"></i>&nbsp;Contestar Evaluaciones</a>
+                                                <a href="#"><i class="fa fa-circle text-<%= semsec %>"></i>&nbsp;<%= CntEvl %></a>
                                                 <ul class="treeview-menu">
                                                 <%
                                                 fr = 1
@@ -1048,11 +1065,12 @@
                                             end if
 
                                             '<!-- Buscamos si alguna Plaza asignada está vacante para asignar la Estructura de Colaboradores -->
-                                            sqlVcn = "select Otm_Plaza from HRM10100 where Otm_Plaza_Superior = "& PlzSup &" and Otm_Empleado = 0 "
+                                            sqlVcn = "select Otm_Plaza, Otm_EmpresaFuente from HRM10100 where Otm_Plaza_Superior = "& PlzSup &" and Otm_Empleado = 0 "
                                             set rsVcn = dbconn.execute(sqlVcn)
                                             if not rsVcn.bof and not rsVcn.eof then
                                                 do while not rsVcn.eof
                                                     PlzVcn = trim(rsVcn("Otm_Plaza"))
+                                                    EmpFnt = trim(rsVcn("Otm_EmpresaFuente"))
                                                     sqlClv = "select b.Psm_Estatus,        c.Emp_EmpleadoID, " & _
                                                              "       c.Emp_NombreCompleto, c.Emp_CompaniaID  " & _
                                                              "from HRM105A0 a, HRM10502 b, HRM10220 c,       " & _
@@ -1067,6 +1085,7 @@
                                                              "and   d.Evh_Ejercicio     =  "& Ejr &"         " & _
                                                              "and   a.Psf_Seccion       = 'APROBJ'           " & _
                                                              "and   c.Emp_PlazaSuperior = '"& PlzVcn &"'     " & _
+                                                             "and   c.Emp_CompaniaID    = '"& EmpFnt &"'     " & _
                                                              "and   d.Evh_TipoEval      < 3                  "
                                                     set rsClv = dbconn.execute(sqlClv)
                                                     if not rsClv.bof and not rsClv.eof then
@@ -1147,20 +1166,20 @@
                                 <%
                                 if date >= P1FecIniD and date <= P1FecFinD then
                                     if P1Est = 0 then
-                                        %><span class="label label-success">En Tiempo</span><%
+                                        %><span class="label label-success"><%= GnrSt1 %></span><%
                                     else
-                                        %><span class="label label-danger">En Curso</span><%
+                                        %><span class="label label-danger"><%= GnrSt2 %></span><%
                                     end if
                                 else
                                     if date > P1FecFinD then
                                         if P1Est = 0 then
-                                            %><span class="label label-success">Concluida En Tiempo</span><%
+                                            %><span class="label label-success"><%= GnrSt3 %></span><%
                                         else
-                                            %><span class="label label-danger">Retraso</span><%
+                                            %><span class="label label-danger"><%= GnrSt4 %></span><%
                                         end if
                                     else
                                         if date < P1FecIniD then
-                                            %><span class="label label-primary">No Iniciada</span><%
+                                            %><span class="label label-primary"><%= GnrSt5 %></span><%
                                         end if
                                     end if
                                 end if
@@ -1176,7 +1195,7 @@
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="box" style="border-top-color: #fff">
                     <div class="box-header with-border">
-                        <h3 class="box-title"><i class="fa fa-check-circle"></i>&nbsp;&nbsp;<%= BxHd02 %></h3>
+                        <h3 class="box-title"><i class="fa fa-crosshairs"></i>&nbsp;&nbsp;<%= BxHd02 %></h3>
                     </div>
                     <div class="box" style="border-top-color: #bb6262; border-top-width: thick">
                         <div class="box-body">
@@ -2016,20 +2035,20 @@
                                 <%
                                 if date >= P2FecIniD and date <= P2FecFinD then
                                     if P2Est = 0 then
-                                        %><span class="label label-success">En Tiempo</span><%
+                                        %><span class="label label-success"><%= GnrSt1 %></span><%
                                     else
-                                        %><span class="label label-danger">En Curso</span><%
+                                        %><span class="label label-danger"><%= GnrSt2 %></span><%
                                     end if
                                 else
                                     if date > P2FecFinD then
                                         if P2Est = 0 then
-                                            %><span class="label label-success">Concluida En Tiempo</span><%
+                                            %><span class="label label-success"><%= GnrSt3 %></span><%
                                         else
-                                            %><span class="label label-danger">Retraso</span><%
+                                            %><span class="label label-danger"><%= GnrSt4 %></span><%
                                         end if
                                     else
                                         if date < P2FecIniD then
-                                            %><span class="label label-primary">No Iniciada</span><%
+                                            %><span class="label label-primary"><%= GnrSt5 %></span><%
                                         end if
                                     end if
                                 end if
@@ -2045,7 +2064,7 @@
             <div class="col-md-3 col-sm-6 col-xs-12">
                 <div class="box" style="border-top-color: #fff">
                     <div class="box-header with-border">
-                        <h3 class="box-title"><i class="fa fa-crosshairs"></i> &nbsp;&nbsp;<%= BxHd03 %></h3>
+                        <h3 class="box-title"><i class="fa fa-file-text"></i> &nbsp;&nbsp;<%= BxHd03 %></h3>
                     </div>
                     <div class="box" style="border-top-color: #9d3434; border-top-width: thick">
                         <div class="box-body">
@@ -2148,20 +2167,20 @@
                                 <%
                                 if date >= P3FecIniD and date <= P3FecFinD then
                                     if P3Est = 0 then
-                                        %><span class="label label-success">En Tiempo</span><%
+                                        %><span class="label label-success"><%= GnrSt1 %></span><%
                                     else
-                                        %><span class="label label-danger">En Curso</span><%
+                                        %><span class="label label-danger"><%= GnrSt2 %></span><%
                                     end if
                                 else
                                     if date > P3FecFinD then
                                         if P3Est = 0 then
-                                            %><span class="label label-success">Concluida En Tiempo</span><%
+                                            %><span class="label label-success"><%= GnrSt3 %></span><%
                                         else
-                                            %><span class="label label-danger">Retraso</span><%
+                                            %><span class="label label-danger"><%= GnrSt4 %></span><%
                                         end if
                                     else
                                         if date < P3FecIniD then
-                                            %><span class="label label-primary">No Iniciada</span><%
+                                            %><span class="label label-primary"><%= GnrSt5 %></span><%
                                         end if
                                     end if
                                 end if

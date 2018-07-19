@@ -41,7 +41,60 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <%
+    sqlTrn = "select Trd_ElementoID, Trd_Texto from HRM10002 where Trd_TransaccionID = 'CnfGrl0150' and Trd_IdiomaID = '"& Lng &"'  "
 
+    set rsTrn = dbconn.execute(sqlTrn)
+    if not rsTrn.eof and not rsTrn.bof then
+        dim Elm
+        do while not rsTrn.eof
+            Elm = trim(rsTrn("Trd_ElementoID"))
+            Select Case Elm
+              Case "TitPri"
+                TitPri = trim(rsTrn("Trd_Texto"))
+              Case "SubTit"
+                SubTit = trim(rsTrn("Trd_Texto"))
+              Case "Tab001"
+                Tab001 = trim(rsTrn("Trd_Texto"))
+              Case "Tab002"
+                Tab002 = trim(rsTrn("Trd_Texto"))
+              Case "Tab003"
+                Tab003 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Lb1"
+                Fr1Lb1 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Ph1"
+                Fr1Ph1 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Lb2"
+                Fr1Lb2 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Ph2"
+                Fr1Ph2 = trim(rsTrn("Trd_Texto"))
+              Case "Fr2Lb1"
+                Fr2Lb1 = trim(rsTrn("Trd_Texto"))
+              Case "Fr2Ph1"
+                Fr2Ph1 = trim(rsTrn("Trd_Texto"))
+              Case "Fr2Lb2"
+                Fr2Lb2 = trim(rsTrn("Trd_Texto"))
+              Case "Fr2Ph2"
+                Fr2Ph2 = trim(rsTrn("Trd_Texto"))
+              Case "Fr2Lb3"
+                Fr2Lb3 = trim(rsTrn("Trd_Texto"))
+              Case "Fr2Ph3"
+                Fr2Ph3 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Sb1"
+                Fr1Sb1  = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Sb2"
+                Fr1Sb2  = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Lg1"
+                Fr1Lg1  = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Lg2"
+                Fr1Lg2  = trim(rsTrn("Trd_Texto"))
+              Case "MsgAl1"
+                MsgAl1  = trim(rsTrn("Trd_Texto"))
+              Case else
+                Tb1Hd0 = trim(rsTrn("Trd_Texto"))
+            End Select
+            rsTrn.movenext
+        loop
+    end if
 
     Tab1St = ""
     Tab2St = ""
@@ -158,14 +211,14 @@
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
                         <li <%= Tab1St %>>
-                            <a href="#tipenc" data-toggle="tab">Tipos</a>
+                            <a href="#tipenc" data-toggle="tab"><%= Tab001 %></a>
                         </li>
                         <li <%= Tab2St %>>
-                            <a href="#factor" data-toggle="tab">Factores</a>
+                            <a href="#factor" data-toggle="tab"><%= Tab002 %></a>
                         </li>
-                        <li <%= Tab3St %>>
-                            <a href="#public" data-toggle="tab">Publicar</a>
-                        </li>
+                        <!-- <li <%= Tab3St %>>
+                            <a href="#public" data-toggle="tab"><%= Tab003 %></a>
+                        </li> -->
                     </ul>
                     <div class="tab-content">
 
@@ -179,21 +232,21 @@
                                       <div class="row fontawesome-icon-list">
                                         <div class="col-md-3 col-sm-4">
                                           <div class="form-group">
-                                            <label style="color: #f00">* &nbsp;</label><label>Tipo de Encuesta</label>
-                                            <input type="text" class="form-control" name="EncTip" id="EncTip" placeholder="Tipo de Encuesta" maxlength="20" required />
+                                            <label style="color: #f00">* &nbsp;</label><label><%= Fr1Lb1 %></label>
+                                            <input type="text" class="form-control" name="EncTip" id="EncTip" placeholder="<%= Fr1Ph1 %>" maxlength="20" required />
                                           </div>
                                         </div>
                                         <div class="col-md-3 col-sm-4">
                                           <div class="form-group">
-                                            <label style="color: #f00">* &nbsp;</label><label>Descripción</label>
-                                            <input type="text" class="form-control" id="EncDsc" name="EncDsc" placeholder="Descripción de la Encuesta" maxlength="300" required />
+                                            <label style="color: #f00">* &nbsp;</label><label><%= Fr1Lb2 %></label>
+                                            <input type="text" class="form-control" id="EncDsc" name="EncDsc" placeholder="<%= Fr1Ph2 %>" maxlength="300" required />
                                           </div>
                                         </div>
                                         <div class="col-md-3 col-sm-4">
                                           <div class="form-group">
-                                            <label style="color: #f00">* Requerido</label>
+                                            <label style="color: #f00"><%= Fr1Lg1 %></label>
                                             <br/>
-                                            <button type="submit" class="btn btn-primary" name="Sbt1" id="Sbt1" value="Sbt1">Agregar</button>
+                                            <button type="submit" class="btn btn-primary" name="Sbt1" id="Sbt1" value="Sbt1"><%= Fr1Sb1 %></button>
                                           </div>
                                         </div>
                                       </div>
@@ -212,14 +265,14 @@
                                 <div class="box box-primary">
                                   <form action="Hrm_EncuestasConfig.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid & "&Prm=1" %>" name="form1a" method="post">
                                     <div class="box-header">
-                                      <h3 class="box-title">Registrados</h3>
+                                      <h3 class="box-title"><%= Fr1Lg2 %></h3>
                                     </div>
                                     <div class="box-body">
                                       <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                           <tr>
-                                            <th>ID</th>
-                                            <th>Descripción</th>
+                                            <th><%= Fr1Lb1 %></th>
+                                            <th><%= Fr1Lb2 %></th>
                                             <th style="text-align: center; color: red; font-weight: bold">X</th>
                                           </tr>
                                         </thead>
@@ -249,7 +302,7 @@
                                       </table>
                                       <div class="box-footer" style="text-align: center">
                                         <input type="hidden" name="Ind1" id="Ind1" value="<%= i %>" />
-                                        <button type="submit" class="btn btn-primary" style="background-color: red " name="Sbt1a" id="Sbt1a" value="Sbt1a">Eliminar líneas seleccionadas</button>
+                                        <button type="submit" class="btn btn-primary" style="background-color: red " name="Sbt1a" id="Sbt1a" value="Sbt1a"><%= Fr1Sb2 %></button>
                                       </div>
                                     </div>
                                   </form>
@@ -263,7 +316,7 @@
                         </div>
 
 
-                        <!-- Usuarios Inactivos -->
+                        <!-- Captura de Factores -->
                         <div class="<%= Pan2St %>" id="factor" >
 
                           <section id="AFactores">
@@ -274,21 +327,21 @@
                                     <div class="row fontawesome-icon-list">
                                       <div class="col-md-3 col-sm-4">
                                         <div class="form-group">
-                                          <label style="color: #f00">* &nbsp;</label><label>Factor ID</label>
-                                          <input type="text" class="form-control" name="FactID" id="FactID" placeholder="Factor a Evaluar" maxlength="45" required />
+                                          <label style="color: #f00">* &nbsp;</label><label><%= Fr2Lb1 %></label>
+                                          <input type="text" class="form-control" name="FactID" id="FactID" placeholder="<%= Fr2Ph1 %>" maxlength="45" required />
                                         </div>
                                       </div>
                                       <div class="col-md-3 col-sm-4">
                                         <div class="form-group">
-                                          <label style="color: #f00">* &nbsp;</label><label>Descripción</label>
-                                          <input type="text" class="form-control" id="FacDsc" name="FacDsc" placeholder="Descripción del Factor" maxlength="300" required />
+                                          <label style="color: #f00">* &nbsp;</label><label><%= Fr2Lb2 %></label>
+                                          <input type="text" class="form-control" id="FacDsc" name="FacDsc" placeholder="<%= Fr2Ph2 %>" maxlength="300" required />
                                         </div>
                                       </div>
                                       <div class="col-md-3 col-sm-4">
                                         <div class="form-group">
-                                          <label style="color: #f00">* &nbsp;</label><label>Idioma</label>
+                                          <label style="color: #f00">* &nbsp;</label><label><%= Fr2Lb3 %></label>
                                           <select class="form-control" size="1" id="FacLng" name="FacLng" required>
-                                            <option class="form-control" value="">Seleccione el Idioma</option>
+                                            <option class="form-control" value=""><%= Fr2Ph3 %></option>
                                             <%
                                             sqlLng = "select * from HRM10001 order by Idm_Descripcion"
                                             set rsLng = dbconn.execute(sqlLng)
@@ -308,9 +361,9 @@
                                       </div>
                                       <div class="col-md-3 col-sm-4">
                                         <div class="form-group">
-                                          <label style="color: #f00">* Requerido</label>
+                                          <label style="color: #f00"><%= Fr1Lg1 %></label>
                                           <br/>
-                                          <button type="submit" class="btn btn-primary" name="Sbt2" id="Sbt2" value="Sbt2">Agregar</button>
+                                          <button type="submit" class="btn btn-primary" name="Sbt2" id="Sbt2" value="Sbt2"><%= Fr1Sb1 %></button>
                                         </div>
                                       </div>
                                     </div>
@@ -329,15 +382,15 @@
                               <div class="box box-primary">
                                 <form action="Hrm_EncuestasConfig.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid & "&Prm=2" %>" name="form2a" method="post">
                                   <div class="box-header">
-                                    <h3 class="box-title">Registrados</h3>
+                                    <h3 class="box-title"><%= Fr1Lg2 %></h3>
                                   </div>
                                   <div class="box-body">
                                     <table id="example2" class="table table-bordered table-striped">
                                       <thead>
                                         <tr>
-                                          <th>Idioma ID</th>
-                                          <th>Factor ID</th>
-                                          <th>Descripción</th>
+                                          <th><%= Fr2Lb3 %></th>
+                                          <th><%= Fr2Lb1 %></th>
+                                          <th><%= Fr2Lb2 %></th>
                                           <th style="text-align: center; color: red; font-weight: bold">X</th>
                                         </tr>
                                       </thead>
@@ -371,7 +424,7 @@
                                     </table>
                                     <div class="box-footer" style="text-align: center">
                                       <input type="hidden" name="Ind2" id="Ind2" value="<%= i %>" />
-                                      <button type="submit" class="btn btn-primary" style="background-color: red " name="Sbt2a" id="Sbt2a" value="Sbt2a">Eliminar líneas seleccionadas</button>
+                                      <button type="submit" class="btn btn-primary" style="background-color: red " name="Sbt2a" id="Sbt2a" value="Sbt2a"><%= Fr1Sb2 %></button>
                                     </div>
                                   </div>
                                 </form>

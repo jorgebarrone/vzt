@@ -171,6 +171,22 @@
               Case "SmBtn3"
                 SmBtn3  = trim(rsTrn("Trd_Texto"))
 
+              Case "GnrSt1"
+                GnrSt1  = trim(rsTrn("Trd_Texto"))
+              Case "GnrSt2"
+                GnrSt2  = trim(rsTrn("Trd_Texto"))
+              Case "GnrSt3"
+                GnrSt3  = trim(rsTrn("Trd_Texto"))
+              Case "GnrSt4"
+                GnrSt4  = trim(rsTrn("Trd_Texto"))
+              Case "GnrSt5"
+                GnrSt5  = trim(rsTrn("Trd_Texto"))
+
+              Case "AcpEvl"
+                AcpEvl  = trim(rsTrn("Trd_Texto"))
+              Case "CntEvl"
+                CntEvl  = trim(rsTrn("Trd_Texto"))
+
               Case else
                 Tb1Hd0 = trim(rsTrn("Trd_Texto"))
             End Select
@@ -393,7 +409,7 @@
                                         <div class="col-md-3 col-sm-6 col-xs-12">
                                             <div class="box" style="border-top-color: #fff">
                                                 <div class="box-header with-border">
-                                                    <h3 class="box-title"><i class="fa fa-file-text"></i>&nbsp;&nbsp;<%= BxHd01 %></h3>
+                                                    <h3 class="box-title"><i class="fa fa-check-circle"></i>&nbsp;&nbsp;<%= BxHd01 %></h3>
                                                 </div>
                                                 <div class="box" style="border-top-color: #d99898; border-top-width: thick">
                                                     <div class="box-body">
@@ -724,7 +740,7 @@
                                                                     Do while not rsEnc.eof
                                                                         if fr = 0 then
                                                                             %>
-                                                                            <a href="#"><i class="fa fa-circle text-<%= semsec %>"></i>&nbsp;Aceptar Evaluaciones</a>
+                                                                            <a href="#"><i class="fa fa-circle text-<%= semsec %>"></i>&nbsp;<%= AcpEvl %></a>
                                                                             <ul class="treeview-menu">
                                                                             <%
                                                                             fr = 1
@@ -792,7 +808,7 @@
                                                                     Do while not rsEnc.eof
                                                                         if fr = 0 then
                                                                             %>
-                                                                            <a href="#"><i class="fa fa-circle text-<%= semsec %>"></i>&nbsp;Contestar Evaluaciones</a>
+                                                                            <a href="#"><i class="fa fa-circle text-<%= semsec %>"></i>&nbsp;<%= CntEvl %></a>
                                                                             <ul class="treeview-menu">
                                                                             <%
                                                                             fr = 1
@@ -1179,20 +1195,20 @@
                                                             <%
                                                             if date >= P1FecIniD and date <= P1FecFinD then
                                                                 if P1Est = 0 then
-                                                                    %><span class="label label-success">En Tiempo</span><%
+                                                                    %><span class="label label-success"><%= GnrSt1 %></span><%
                                                                 else
-                                                                    %><span class="label label-danger">En Curso</span><%
+                                                                    %><span class="label label-danger"><%= GnrSt2 %></span><%
                                                                 end if
                                                             else
                                                                 if date > P1FecFinD then
                                                                     if P1Est = 0 then
-                                                                        %><span class="label label-success">Concluida En Tiempo</span><%
+                                                                        %><span class="label label-success"><%= GnrSt3 %></span><%
                                                                     else
-                                                                        %><span class="label label-danger">Retraso</span><%
+                                                                        %><span class="label label-danger"><%= GnrSt4 %></span><%
                                                                     end if
                                                                 else
                                                                     if date < P1FecIniD then
-                                                                        %><span class="label label-primary">No Iniciada</span><%
+                                                                        %><span class="label label-primary"><%= GnrSt5 %></span><%
                                                                     end if
                                                                 end if
                                                             end if
@@ -1208,7 +1224,7 @@
                                         <div class="col-md-3 col-sm-6 col-xs-12">
                                             <div class="box" style="border-top-color: #fff">
                                                 <div class="box-header with-border">
-                                                    <h3 class="box-title"><i class="fa fa-check-circle"></i>&nbsp;&nbsp;<%= BxHd02 %></h3>
+                                                    <h3 class="box-title"><i class="fa fa-crosshairs"></i>&nbsp;&nbsp;<%= BxHd02 %></h3>
                                                 </div>
                                                 <div class="box" style="border-top-color: #bb6262; border-top-width: thick">
                                                     <div class="box-body">
@@ -2048,20 +2064,20 @@
                                                             <%
                                                             if date >= P2FecIniD and date <= P2FecFinD then
                                                                 if P2Est = 0 then
-                                                                    %><span class="label label-success">En Tiempo</span><%
+                                                                    %><span class="label label-success"><%= GnrSt1 %></span><%
                                                                 else
-                                                                    %><span class="label label-danger">En Curso</span><%
+                                                                    %><span class="label label-danger"><%= GnrSt2 %></span><%
                                                                 end if
                                                             else
                                                                 if date > P2FecFinD then
                                                                     if P2Est = 0 then
-                                                                        %><span class="label label-success">Concluida En Tiempo</span><%
+                                                                        %><span class="label label-success"><%= GnrSt3 %></span><%
                                                                     else
-                                                                        %><span class="label label-danger">Retraso</span><%
+                                                                        %><span class="label label-danger"><%= GnrSt4 %></span><%
                                                                     end if
                                                                 else
                                                                     if date < P2FecIniD then
-                                                                        %><span class="label label-primary">No Iniciada</span><%
+                                                                        %><span class="label label-primary"><%= GnrSt5 %></span><%
                                                                     end if
                                                                 end if
                                                             end if
@@ -2077,7 +2093,7 @@
                                         <div class="col-md-3 col-sm-6 col-xs-12">
                                             <div class="box" style="border-top-color: #fff">
                                                 <div class="box-header with-border">
-                                                    <h3 class="box-title"><i class="fa fa-crosshairs"></i> &nbsp;&nbsp;<%= BxHd03 %></h3>
+                                                    <h3 class="box-title"><i class="fa fa-file-text"></i> &nbsp;&nbsp;<%= BxHd03 %></h3>
                                                 </div>
                                                 <div class="box" style="border-top-color: #9d3434; border-top-width: thick">
                                                     <div class="box-body">
@@ -2180,20 +2196,20 @@
                                                             <%
                                                             if date >= P3FecIniD and date <= P3FecFinD then
                                                                 if P3Est = 0 then
-                                                                    %><span class="label label-success">En Tiempo</span><%
+                                                                    %><span class="label label-success"><%= GnrSt1 %></span><%
                                                                 else
-                                                                    %><span class="label label-danger">En Curso</span><%
+                                                                    %><span class="label label-danger"><%= GnrSt2 %></span><%
                                                                 end if
                                                             else
                                                                 if date > P3FecFinD then
                                                                     if P3Est = 0 then
-                                                                        %><span class="label label-success">Concluida En Tiempo</span><%
+                                                                        %><span class="label label-success"><%= GnrSt3 %></span><%
                                                                     else
-                                                                        %><span class="label label-danger">Retraso</span><%
+                                                                        %><span class="label label-danger"><%= GnrSt4 %></span><%
                                                                     end if
                                                                 else
                                                                     if date < P3FecIniD then
-                                                                        %><span class="label label-primary">No Iniciada</span><%
+                                                                        %><span class="label label-primary"><%= GnrSt5 %></span><%
                                                                     end if
                                                                 end if
                                                             end if

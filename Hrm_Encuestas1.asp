@@ -33,105 +33,164 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-
   <% call men() %>
-
-  <%
-  '<!-- Alta de Registros (inicio) -->
-
-  Dim Sci
-  Dim Ten
-  Dim Dsc
-  Sci = trim(Request.QueryString("Sci"))
-  Ten = trim(Request.QueryString("Ten"))
-  Dsc = trim(Request.QueryString("Dsc"))
-
-  if Sci = "" then
-      Sci = trim(Request.Form("Sci"))
-      Ten = trim(Request.Form("Ten"))
-      Dsc = trim(Request.Form("Dsc"))
-      Tid = trim(Request.Form("Tid"))
-  else
-      Tid = ""
-  end if
-
-
-  Dim Ind
-  Dim Bta
-  Dim Btm
-  Dim Lid
-  Dim Nid
-  Ind = request.Form("Ind")
-  Bta = trim(request.Form("BtnAdd"))
-  Btm = trim(request.Form("BtnMdf"))
-  Lid = trim(request.Form("Lid"))
-  Nid = request.Form("Nid")
-
-
-  if Bta = "A" then
-      ' sqlptd = "select isnull(max(Scp_ReactivoID), 0) as ptd            " & _
-      '          "from HRM10303                                           " & _
-      '          "where Scp_ScriptID = '"& trim(Request.Form("Sci")) &"'  "
-      ' set rsptd = dbconn.execute(sqlptd)
-      ' if not rsptd.eof and not rsptd.bof then
-      '     ptd = cint(rsptd("ptd")) + 1
-      ' else
-      '     ptd = 1
-      ' end if
-      sqlins = "insert into HRM10303                        " & _
-               "values ('"& trim(request.form("Sci")) &"',  " & _
-               "        '"& trim(request.form("Tid")) &"',  " & _
-               "         "& Nid &",                         " & _
-               "        '"& Lid &"',                        " & _
-               "        '"& trim(request.form("Rds")) &"')  "
-      'response.write(sqlins)
-      set rsi = dbconn.execute(sqlins)
-  end if
-
-  if Btm = "M" then
-      for e = 1 to Ind
-          if request.Form("elm"&e) = "on" then
-              sqldel = "delete from HRM10303                                   " & _
-                       "where Scp_ScriptID   = '"& Request.Form("Lsci"&e) &"'  " & _
-                       "and   Scp_LngID      = '"& Request.Form("Llng"&e) &"'  " & _
-                       "and   Scp_ReactivoID =  "& Request.Form("Lrei"&e) &"   "
-              set rs = dbconn.Execute (sqldel)
-              sqldel = "delete from HRM10304                                   " & _
-                       "where Scr_ScriptID   = '"& Request.Form("Lsci"&e) &"'  " & _
-                       "and   Scr_LngID      = '"& Request.Form("Llng"&e) &"'  " & _
-                       "and   Scr_ReactivoID =  "& Request.Form("Lrei"&e) &"   "
-              set rs = dbconn.Execute (sqldel)
-              'response.write(sqldel)
-   		  end if
-	  next
-      ' sqlnum = "select Scp_ReactivoID from HRM10303 where Scp_ScriptID = '"& Request.Form("Sci") &"' order by Scp_ReactivoID "
-      ' set rsnum = dbconn.execute(sqlnum)
-      ' if not rsnum.eof and not rsnum.bof then
-      '     ptd = 0
-      '     do while not rsnum.eof
-      '         ptd = ptd + 1
-      '         sqlupd = "update HRM10303                                         " & _
-      '                  "set   Scp_ReactivoID =  "& ptd                     &"   " & _
-      '                  "where Scp_ScriptID   = '"& Request.Form("Sci")     &"'  " &_
-      '                  "and   Scp_ReactivoID =  "& rsnum("Scp_ReactivoID") &"   " & _
-      '         set rsupd = dbconn.execute(sqlupd)
-      '         rsnum.movenext
-      '     loop
-      '     rsnum.close
-      '     set rsnum = Nothing
-      ' end if
-  end if
-
-  '<!-- Alta de Registros (fin) -->
-
-  %>
-
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    <%
+    sqlTrn = "select Trd_ElementoID, Trd_Texto from HRM10002 where Trd_TransaccionID = 'CnfGrl0200' and Trd_IdiomaID = '"& Lng &"'  "
+
+    set rsTrn = dbconn.execute(sqlTrn)
+    if not rsTrn.eof and not rsTrn.bof then
+        dim Elm
+        do while not rsTrn.eof
+            Elm = trim(rsTrn("Trd_ElementoID"))
+            Select Case Elm
+              Case "TitSec"
+                TitSec = trim(rsTrn("Trd_Texto"))
+              Case "SubTit"
+                SubTit = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Lb1"
+                Fr1Lb1 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Ph1"
+                Fr1Ph1 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Lb2"
+                Fr1Lb2 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Ph2"
+                Fr1Ph2 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Lb3"
+                Fr1Lb3 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Ph3"
+                Fr1Ph3 = trim(rsTrn("Trd_Texto"))
+
+              Case "Fr1Lb4"
+                Fr1Lb4 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Ph4"
+                Fr1Ph4 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Lb5"
+                Fr1Lb5 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Ph5"
+                Fr1Ph5 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Lb6"
+                Fr1Lb6 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Ph6"
+                Fr1Ph6 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Lb7"
+                Fr1Lb7 = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Ph7"
+                Fr1Ph7 = trim(rsTrn("Trd_Texto"))
+
+              Case "Fr1Sb1"
+                Fr1Sb1  = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Sb2"
+                Fr1Sb2  = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Lg1"
+                Fr1Lg1  = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Lg2"
+                Fr1Lg2  = trim(rsTrn("Trd_Texto"))
+              Case "MsgAl1"
+                MsgAl1  = trim(rsTrn("Trd_Texto"))
+
+              Case else
+                Tb1Hd0 = trim(rsTrn("Trd_Texto"))
+            End Select
+            rsTrn.movenext
+        loop
+    end if
+
+    '<!-- Alta de Registros (inicio) -->
+
+    Dim Sci
+    Dim Ten
+    Dim Dsc
+    Sci = trim(Request.QueryString("Sci"))
+    Ten = trim(Request.QueryString("Ten"))
+    Dsc = trim(Request.QueryString("Dsc"))
+
+    if Sci = "" then
+        Sci = trim(Request.Form("Sci"))
+        Ten = trim(Request.Form("Ten"))
+        Dsc = trim(Request.Form("Dsc"))
+        Tid = trim(Request.Form("Tid"))
+    else
+        Tid = ""
+    end if
+
+
+    Dim Ind
+    Dim Bta
+    Dim Btm
+    Dim Lid
+    Dim Nid
+    Ind = request.Form("Ind")
+    Bta = trim(request.Form("BtnAdd"))
+    Btm = trim(request.Form("BtnMdf"))
+    Lid = trim(request.Form("Lid"))
+    Nid = request.Form("Nid")
+
+
+    if Bta = "A" then
+        ' sqlptd = "select isnull(max(Scp_ReactivoID), 0) as ptd            " & _
+        '          "from HRM10303                                           " & _
+        '          "where Scp_ScriptID = '"& trim(Request.Form("Sci")) &"'  "
+        ' set rsptd = dbconn.execute(sqlptd)
+        ' if not rsptd.eof and not rsptd.bof then
+        '     ptd = cint(rsptd("ptd")) + 1
+        ' else
+        '     ptd = 1
+        ' end if
+        sqlins = "insert into HRM10303                        " & _
+                 "values ('"& trim(request.form("Sci")) &"',  " & _
+                 "        '"& trim(request.form("Tid")) &"',  " & _
+                 "         "& Nid &",                         " & _
+                 "        '"& Lid &"',                        " & _
+                 "        '"& trim(request.form("Rds")) &"')  "
+        'response.write(sqlins)
+        set rsi = dbconn.execute(sqlins)
+    end if
+
+    if Btm = "M" then
+        for e = 1 to Ind
+            if request.Form("elm"&e) = "on" then
+                sqldel = "delete from HRM10303                                   " & _
+                         "where Scp_ScriptID   = '"& Request.Form("Lsci"&e) &"'  " & _
+                         "and   Scp_LngID      = '"& Request.Form("Llng"&e) &"'  " & _
+                         "and   Scp_ReactivoID =  "& Request.Form("Lrei"&e) &"   "
+                set rs = dbconn.Execute (sqldel)
+                sqldel = "delete from HRM10304                                   " & _
+                         "where Scr_ScriptID   = '"& Request.Form("Lsci"&e) &"'  " & _
+                         "and   Scr_LngID      = '"& Request.Form("Llng"&e) &"'  " & _
+                         "and   Scr_ReactivoID =  "& Request.Form("Lrei"&e) &"   "
+                set rs = dbconn.Execute (sqldel)
+                'response.write(sqldel)
+     		  end if
+  	  next
+        ' sqlnum = "select Scp_ReactivoID from HRM10303 where Scp_ScriptID = '"& Request.Form("Sci") &"' order by Scp_ReactivoID "
+        ' set rsnum = dbconn.execute(sqlnum)
+        ' if not rsnum.eof and not rsnum.bof then
+        '     ptd = 0
+        '     do while not rsnum.eof
+        '         ptd = ptd + 1
+        '         sqlupd = "update HRM10303                                         " & _
+        '                  "set   Scp_ReactivoID =  "& ptd                     &"   " & _
+        '                  "where Scp_ScriptID   = '"& Request.Form("Sci")     &"'  " &_
+        '                  "and   Scp_ReactivoID =  "& rsnum("Scp_ReactivoID") &"   " & _
+        '         set rsupd = dbconn.execute(sqlupd)
+        '         rsnum.movenext
+        '     loop
+        '     rsnum.close
+        '     set rsnum = Nothing
+        ' end if
+    end if
+
+    '<!-- Alta de Registros (fin) -->
+
+    %>
+
+
     <!-- Content Header (Page header) -->
-    <% TitPri = "Encuesta" & " - " & Dsc %>
-    <% call hdr(Dsc,"- Alta de Preguntas/Reactivos") %>
+    <% SubTit = " - " & Dsc %>
+    <% call hdr(TitSec, SubTit) %>
 
     <!-- Main content -->
     <section class="content">
@@ -141,23 +200,22 @@
         <!-- Agregar Scripts -->
         <div class="box box-success">
             <form action="Hrm_Encuestas1.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid %>" name="form1" method="post">
-
                 <!-- form start -->
                 <div class="box-body">
                     <div class="row fontawesome-icon-list">
                         <div class="col-md-3 col-sm-4">
                             <div class="form-group">
-                                <label style="color: #f00">* &nbsp;</label><label>Encuesta</label>
+                                <label style="color: #f00">* &nbsp;</label><label><%= Fr1Lb1 %></label>
                                 <input type="hidden" name="Sci" id="Sci" value="<%= Sci %>" />
                                 <input type="hidden" name="Ten" id="Ten" value="<%= Ten %>" />
-                                <input type="text" class="form-control" name="Scid" id="Scid" placeholder="Encuesta" value="<%= Sci & " - " & Dsc %>" maxlength="50" disabled />
+                                <input type="text" class="form-control" name="Scid" id="Scid" placeholder="<%= Fr1Ph1 %>" value="<%= Sci & " - " & Dsc %>" maxlength="50" disabled />
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-4">
                             <div class="form-group">
-                                <label style="color: #f00">* &nbsp;</label><label>Factor</label>
+                                <label style="color: #f00">* &nbsp;</label><label><%= Fr1Lb4 %></label>
                                 <select class="form-control" size="1" id="Tid" name="Tid" required>
-                                    <option class="form-control" value="">Seleccione el Factor</option>
+                                    <option class="form-control" value=""><%= Fr1Ph4 %></option>
                                     <%
                                     sqlT = "select * from HRM10302 order by Sct_TemaID, Sct_Descripcion   "
                                     set rsT = dbconn.execute(sqlT)
@@ -189,9 +247,9 @@
 
                         <div class="col-md-3 col-sm-4">
                             <div class="form-group">
-                                <label style="color: #f00">* &nbsp;</label><label>Idioma</label>
+                                <label style="color: #f00">* &nbsp;</label><label><%= Fr1Lb5 %></label>
                                 <select class="form-control" size="1" id="Lid" name="Lid" required>
-                                    <option class="form-control" value="">Seleccione el Idioma</option>
+                                    <option class="form-control" value=""><%= Fr1Ph5 %></option>
                                     <%
                                     sqlLid = "select * from HRM10001 order by Idm_Descripcion "
                                     set rsLid = dbconn.execute(sqlLid)
@@ -212,27 +270,24 @@
 
                         <div class="col-md-3 col-sm-4">
                             <div class="form-group">
-                                <label style="color: #f00">* &nbsp;</label><label>No de Pregunta</label>
+                                <label style="color: #f00">* &nbsp;</label><label><%= Fr1Lb6 %></label>
                                 <input class="form-control" type="number" min="0" name="Nid" id="Nid" required />
                             </div>
                         </div>
 
                         <div class="col-md-3 col-sm-4">
                             <div class="form-group">
-                                <label style="color: #f00">* &nbsp;</label><label>Pregunta / Reactivo</label>
-                                <input type="text" class="form-control" name="Rds" id="Rds" placeholder="Ingrese la Pregunta / Reactivo" maxlength="300" required />
+                                <label style="color: #f00">* &nbsp;</label><label><%= Fr1Lb7 %></label>
+                                <input type="text" class="form-control" name="Rds" id="Rds" placeholder="<%= Fr1Ph7 %>" maxlength="300" required />
                             </div>
                         </div>
                         <div class="col-md-3 col-sm-4">
                             <div class="form-group">
-                                <label>&nbsp;</label>
+                                <label style="color: #f00"><%= Fr1Lg1 %></label>
                                 <br/>
-                                <button type="submit" class="btn btn-primary" name="BtnAdd" id="BtnAdd" value="A">Agregar</button>
+                                <button type="submit" class="btn btn-primary" name="BtnAdd" id="BtnAdd" value="A"><%= Fr1Sb1 %></button>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4">
-                        <label style="color: #f00">Requerido</label>
                     </div>
 
                 </div>
@@ -252,16 +307,16 @@
             <div class="box box-primary">
                 <form action="Hrm_Encuestas1.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid %>" name="form2" method="post">
                     <div class="box-header">
-                      <h3 class="box-title">Registrados</h3>
+                      <h3 class="box-title"><%= Fr1Lg2 %></h3>
                     </div>
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>No</th>
-                                    <th>Factor</th>
-                                    <th>Idioma</th>
-                                    <th>Pregunta / Reactivo</th>
+                                    <th><%= Fr1Lb6 %></th>
+                                    <th><%= Fr1Lb4 %></th>
+                                    <th><%= Fr1Lb5 %></th>
+                                    <th><%= Fr1Lb7 %></th>
                                     <th style="text-align: center; color: red; font-weight: bold">X</th>
                                 </tr>
                             </thead>
@@ -309,7 +364,7 @@
                             <input type="hidden" name="Ind" id="Ind" value="<%= i %>" />
                             <input type="hidden" name="Sci" id="Sci" value="<%= Sci %>" />
                             <input type="hidden" name="Tid" id="Tid" value="<%= Tid %>" />
-                            <button type="submit" class="btn btn-primary" style="background-color: red " name="BtnMdf" id="BtnMdf" value="M">Eliminar líneas seleccionadas</button>
+                            <button type="submit" class="btn btn-primary" style="background-color: red " name="BtnMdf" id="BtnMdf" value="M"><%= Fr1Sb2 %></button>
                         </div>
                     </div>
                 </form>

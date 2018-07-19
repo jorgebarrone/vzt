@@ -683,6 +683,47 @@ window.downloadPDF = function downloadPDF(p1) {
               Case "Tb2St4"
                 Tb2St4 = trim(rsTrn("Trd_Texto"))
 
+              Case "Nav001"
+                Nav001 = trim(rsTrn("Trd_Texto"))
+              Case "Nav002"
+                Nav002 = trim(rsTrn("Trd_Texto"))
+              Case "Nav003"
+                Nav003 = trim(rsTrn("Trd_Texto"))
+              Case "Nav004"
+                Nav004 = trim(rsTrn("Trd_Texto"))
+              Case "Nav005"
+                Nav005 = trim(rsTrn("Trd_Texto"))
+
+              Case "Tab010"
+                Tab010 = trim(rsTrn("Trd_Texto"))
+              Case "Tb10H1"
+                Tb10H1 = trim(rsTrn("Trd_Texto"))
+              Case "Tb10H2"
+                Tb10H2 = trim(rsTrn("Trd_Texto"))
+
+              Case "Tab011"
+                Tab011 = trim(rsTrn("Trd_Texto"))
+              Case "Tb11H1"
+                Tb11H1 = trim(rsTrn("Trd_Texto"))
+              Case "Tb11H2"
+                Tb11H2 = trim(rsTrn("Trd_Texto"))
+              Case "Tb11H3"
+                Tb11H3 = trim(rsTrn("Trd_Texto"))
+              Case "Tb11H4"
+                Tb11H4 = trim(rsTrn("Trd_Texto"))
+              Case "Tb11H5"
+                Tb11H5 = trim(rsTrn("Trd_Texto"))
+              Case "Tb11H6"
+                Tb11H6 = trim(rsTrn("Trd_Texto"))
+              Case "Tb11H7"
+                Tb11H7 = trim(rsTrn("Trd_Texto"))
+              Case "Tb11H8"
+                Tb11H8 = trim(rsTrn("Trd_Texto"))
+              Case "Tb11H9"
+                Tb11H9 = trim(rsTrn("Trd_Texto"))
+
+
+
               Case "SmBtn1"
                 SmBtn1  = trim(rsTrn("Trd_Texto"))
               Case "SmBtn2"
@@ -966,11 +1007,11 @@ window.downloadPDF = function downloadPDF(p1) {
             <div class='col-xs-12'>
                 <div class="nav-tabs-custom">
                     <ul class="nav nav-tabs">
-                        <li <%= Tab1St %>><a href="#generales" data-toggle="tab">Datos Generales</a></li>
-                        <li <%= Tab2St %>><a href="#" onclick="soapRequest1(<%= Nem %>);">Descargar Psicometría</a></li>
-                        <li <%= Tab3St %>><a href="#desempeno" data-toggle="tab" onclick="ClkTab();">Desempeño</a></li>
-                        <li <%= Tab4St %>><a href="#acciones" data-toggle="tab">Acciones de Retroalimentacion</a></li>
-                        <li><a href="Hrm_PadeRetAlm360.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Ejr=" & Ejr & "&Eid=" & Nem & "&Sid=" & Sid & "&Sgn=" & Sgn %>" target="_blank">Reporte 360°</a></li>
+                        <li <%= Tab1St %>><a href="#generales" data-toggle="tab"><%= Nav001 %></a></li>
+                        <li <%= Tab2St %>><a href="#" onclick="soapRequest1(<%= Nem %>);"><%= Nav002 %></a></li>
+                        <li <%= Tab3St %>><a href="#desempeno" data-toggle="tab" onclick="ClkTab();"><%= Nav003 %></a></li>
+                        <li <%= Tab4St %>><a href="#acciones" data-toggle="tab"><%= Nav004 %></a></li>
+                        <li><a href="Hrm_PadeRetAlm360.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Ejr=" & Ejr & "&Eid=" & Nem & "&Sid=" & Sid & "&Sgn=" & Sgn %>" target="_blank"><%= Nav005 %></a></li>
                     </ul>
                     <div class="tab-content">
 
@@ -1307,7 +1348,7 @@ window.downloadPDF = function downloadPDF(p1) {
                                             <!-- AREA CHART -->
                                             <div class="box box-primary box-solid">
                                                 <div class="box-header with-border">
-                                                    <h3 class="box-title">Resultados Objetivos / Habilidades</h3>
+                                                    <h3 class="box-title"><%= Tab010 %></h3>
                                                     <div class="box-tools pull-right">
                                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                                         <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -1318,8 +1359,8 @@ window.downloadPDF = function downloadPDF(p1) {
                                                         <table class="table no-margin">
                                                             <thead>
                                                                 <tr>
-                                                                    <th>PROCESO</th>
-                                                                    <th>RESULTADO</th>
+                                                                    <th><%= Tb10H1 %></th>
+                                                                    <th><%= Tb10H2 %></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -1362,7 +1403,7 @@ window.downloadPDF = function downloadPDF(p1) {
                                             <!-- DONUT CHART -->
                                             <div class="box box-info box-solid">
                                                 <div class="box-header with-border">
-                                                    <h3 class="box-title">Resultados Objetivos / Habilidades</h3>
+                                                    <h3 class="box-title"><%= Tab010 %></th></h3>
                                                     <div class="box-tools pull-right">
                                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                                         <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -1396,7 +1437,7 @@ window.downloadPDF = function downloadPDF(p1) {
                                 <div class="box-body">
                                     <div class="box box-info box-solid">
                                         <div class="box-header">
-                                            <h3 class="box-title">Acciones de Retroalimentacion</h3>
+                                            <h3 class="box-title"><%= Tab011 %></h3>
                                             <div class="box-tools pull-right">
                                                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                                 <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -1407,9 +1448,9 @@ window.downloadPDF = function downloadPDF(p1) {
                                                 <div class="row fontawesome-icon-list">
                                                     <div class="col-md-3 col-sm-4">
                                                         <div class="form-group">
-                                                            <label style="color: #f00">* &nbsp;</label><label>Tipo Accion</label>
+                                                            <label style="color: #f00">* &nbsp;</label><label><%= Tb11H1 %></label>
                                                             <select class="form-control" size="1" id="TipAcc" name="TipAcc" required>
-                                                                <option class="form-control" value=""><%= Fr1Ph1 %></option>
+                                                                <option class="form-control" value=""><%= Tb11H1 %></option>
                                                                 <%
                                                                 sqlTac = "select * from HRM10550 where Rta_CorporativoID = '5000' and Rta_TipoID = 1 and Rta_IdiomaID = '"& Lng &"' order by Rta_Texto   "
                                                                 set rsTac = dbconn.execute(sqlTac)
@@ -1429,9 +1470,9 @@ window.downloadPDF = function downloadPDF(p1) {
                                                     </div>
                                                     <div class="col-md-3 col-sm-4">
                                                         <div class="form-group">
-                                                            <label style="color: #f00">* &nbsp;</label><label>Prioridad</label>
+                                                            <label style="color: #f00">* &nbsp;</label><label><%= Tb11H2 %></label>
                                                             <select class="form-control" size="1" id="TipPri" name="TipPri" required>
-                                                                <option class="form-control" value=""><%= Fr1Ph1 %></option>
+                                                                <option class="form-control" value=""><%= Tb11H2 %></option>
                                                                 <%
                                                                 sqlTac = "select * from HRM10550 where Rta_CorporativoID = '5000' and Rta_TipoID = 2 and Rta_IdiomaID = '"& Lng &"' order by Rta_Texto   "
                                                                 set rsTac = dbconn.execute(sqlTac)
@@ -1451,9 +1492,9 @@ window.downloadPDF = function downloadPDF(p1) {
                                                     </div>
                                                     <div class="col-md-3 col-sm-4">
                                                         <div class="form-group">
-                                                            <label style="color: #f00">* &nbsp;</label><label>Area</label>
+                                                            <label style="color: #f00">* &nbsp;</label><label><%= Tb11H3 %></label>
                                                             <select class="form-control" size="1" id="TipAid" name="TipAid" required>
-                                                                <option class="form-control" value=""><%= Fr1Ph1 %></option>
+                                                                <option class="form-control" value=""><%= Tb11H3 %></option>
                                                                 <%
                                                                 sqlTac = "select * from HRM10550 where Rta_CorporativoID = '5000' and Rta_TipoID = 3 and Rta_IdiomaID = '"& Lng &"' order by Rta_Texto   "
                                                                 set rsTac = dbconn.execute(sqlTac)
@@ -1473,13 +1514,13 @@ window.downloadPDF = function downloadPDF(p1) {
                                                     </div>
                                                     <div class="col-md-3 col-sm-4">
                                                         <div class="form-group">
-                                                            <label>Otra Area</label>
+                                                            <label><%= Tb11H4 %></label>
                                                             <input type="text" class="form-control" name="TxtOtr" id="TxtOtr" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3 col-sm-4">
                                                         <div class="form-group">
-                                                            <label style="color: #f00">* &nbsp;</label><label>Accion</label>
+                                                            <label style="color: #f00">* &nbsp;</label><label><%= Tb11H5 %></label>
                                                             <input type="text" class="form-control" name="TxtAcc" id="TxtAcc" required />
                                                         </div>
                                                     </div>
@@ -1518,17 +1559,14 @@ window.downloadPDF = function downloadPDF(p1) {
                                                 %>
                                                 <div class="box box-primary">
                                                     <form action="Hrm_PadeRetAlm.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Ejr=" & Ejr & "&Dsc=" & Dsc & "&Nem=" & Nem & "&Nmb=" & Nmb & "&Cid="& Cid & "&Sid=" & Sid & "&Prm=4" & "&Sgn=" & Sgn %>" name="form4a" method="post">
-                                                        <div class="box-header">
-                                                            <h3 class="box-title">Registrados</h3>
-                                                        </div>
                                                         <div class="box-body">
                                                             <table class="table table-bordered table-striped">
                                                                 <thead>
                                                                 <tr>
-                                                                    <th>Tipo Accion</th>
-                                                                    <th>Prioridad</th>
-                                                                    <th>Area</th>
-                                                                    <th>Accion</th>
+                                                                    <th><%= Tb11H1 %></th>
+                                                                    <th><%= Tb11H2 %></th>
+                                                                    <th><%= Tb11H3 %></th>
+                                                                    <th><%= Tb11H5 %></th>
                                                                     <th style="text-align: center; color: red; font-weight: bold">X</th>
                                                                 </tr>
                                                                 </thead>
@@ -1570,13 +1608,13 @@ window.downloadPDF = function downloadPDF(p1) {
                                                 <div class="box box-success">
                                                     <form action="Hrm_PadeRetAlm.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Ejr=" & Ejr & "&Dsc=" & Dsc & "&Nem=" & Nem & "&Nmb=" & Nmb & "&Cid="& Cid & "&Sid=" & Sid & "&Prm=4" & "&Sgn=" & Sgn %>" name="form4b" method="post">
                                                         <div class="box-header">
-                                                            <h3 class="box-title">Firmas de Aceptación</h3>
+                                                            <h3 class="box-title"><%= Tb11H6 %></h3>
                                                         </div>
                                                         <div class="box-body">
                                                             <div class="row fontawesome-icon-list">
                                                                 <div class="col-md-3 col-sm-4">
                                                                     <div class="form-group">
-                                                                        <label>Jefe Inmediato</label>
+                                                                        <label><%= Tb11H7 %></label>
                                                                         <%
                                                                         if Sgn = 1 then
                                                                             %>
@@ -1592,7 +1630,7 @@ window.downloadPDF = function downloadPDF(p1) {
                                                                 </div>
                                                                 <div class="col-md-3 col-sm-4">
                                                                     <div class="form-group">
-                                                                        <label>Colaborador</label>
+                                                                        <label><%= Tb11H8 %></label>
                                                                         <%
                                                                         if Sgn = 1 then
                                                                             %>
@@ -1611,7 +1649,7 @@ window.downloadPDF = function downloadPDF(p1) {
                                                                     <div class="form-group">
                                                                         <label>&nbsp;</label>
                                                                         <br/>
-                                                                        <button type="submit" class="btn btn-primary" name="Sbt4b" id="Sbt4b" value="Sbt4b" style="background-color: green" >Guardar</button>
+                                                                        <button type="submit" class="btn btn-primary" name="Sbt4b" id="Sbt4b" value="Sbt4b" style="background-color: green" ><%= Tb11H9 %></button>
                                                                     </div>
                                                                 </div>
                                                             </div>

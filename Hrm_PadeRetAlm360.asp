@@ -210,6 +210,15 @@
               Case "SmBtn3"
                 SmBtn3  = trim(rsTrn("Trd_Texto"))
 
+              Case "LgnR01"
+                LgnR01  = trim(rsTrn("Trd_Texto"))
+              Case "GrfB01"
+                GrfB01  = trim(rsTrn("Trd_Texto"))
+              Case "GrfB02"
+                GrfB02  = trim(rsTrn("Trd_Texto"))
+              Case "GrfB03"
+                GrfB03  = trim(rsTrn("Trd_Texto"))
+
               Case else
                 Tb1Hd0 = trim(rsTrn("Trd_Texto"))
             End Select
@@ -310,7 +319,7 @@
                  set rsIns = dbconn.execute(sqlIns)
                  %>
                  <div class="content">
-                   <h3 class="box-title">Para generar el reporte debe completar su Autoevaluación haciendo click en el siguiente enlace:</h3>
+                   <h3 class="box-title"><%= LgnR01 %></h3>
                    <br>
                    <a style="Padding: 20px 20px 20px 20px" href="Hrm_PadeEnc3603.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid & "&Ejr=" & Ejr & "&Dsc=" & Dsc & "&Eid=" & Eid & "&Nem=" & Eid & "&Nmb=" & Enm & "&Cid=" & Cid %>" > Contestar AutoEvaluacion </a>
                  </div>
@@ -817,21 +826,21 @@
 		var barChartData1 = {
 			labels: [<%= Dtd %>],
 			datasets: [{
-				label: 'Jefe',
+				label: '<%= GrfB01 %>',
         backgroundColor: 'rgba(0, 136, 206, 0.5)',
 				borderColor: 'rgba(0, 136, 206, 1)',
 				borderWidth: 1,
 				data: [<%= Djd %>]
 			},
       {
-				label: 'Clientes, Colaterales, Colaboradores',
+				label: '<%= GrfB02 %>',
         backgroundColor: 'rgba(134, 132, 131, 0.5)',
 				borderColor: 'rgba(134, 132, 131, 1)',
 				borderWidth: 1,
 				data: [<%= Dcc %>]
 			},
       {
-				label: 'Autoevaluacion',
+				label: '<%= GrfB03 %>',
 				backgroundColor: 'rgba(165, 49, 72, 0.5)',
 				borderColor: 'rgba(165, 49, 72, 1)',
 				borderWidth: 1,

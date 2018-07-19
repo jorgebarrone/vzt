@@ -137,9 +137,9 @@
                                                          "and   (s.Psm_SemaforoID = 'MAT3600010' or  " & _
                                                          "       s.Psm_SemaforoID = 'APROBJ0010')    " & _
                                                          "and    e.Emp_NominaID < 10                 " & _
-                                                         "and    e.Emp_CompaniaID IN('2','10','11')  " & _
+                                                         "and    e.Emp_CompaniaID IN('2','10','11', '12')  " & _
                                                          "and    e.Emp_EntidadID = '"& Ent &"'       "
-                                                
+
                                                 sqlVP1 = "select count(s.Psm_Estatus) as TotVP1      " & _
                                                          "from HRM10502 s, HRM10220 e                " & _
                                                          "where s.Psm_CompaniaID = e.Emp_CompaniaID  " & _
@@ -148,7 +148,7 @@
                                                          "and   (s.Psm_SemaforoID = 'MAT3600010' or  " & _
                                                          "       s.Psm_SemaforoID = 'APROBJ0010')    " & _
                                                          "and    e.Emp_NominaID < 10                 " & _
-                                                         "and    e.Emp_CompaniaID IN('2','10','11')  " & _
+                                                         "and    e.Emp_CompaniaID IN('2','10','11', '12')  " & _
                                                          "and    e.Emp_EntidadID = '"& Ent &"'       " & _
                                                          "and    s.Psm_Estatus > 1                   "
 
@@ -160,7 +160,7 @@
                                                          "and   (s.Psm_SemaforoID = 'OBJHAB0010' or  " & _
                                                          "       s.Psm_SemaforoID = 'RETALM0010')    " & _
                                                          "and    e.Emp_NominaID < 10                 " & _
-                                                         "and    e.Emp_CompaniaID IN('2','10','11')  " & _
+                                                         "and    e.Emp_CompaniaID IN('2','10','11', '12')  " & _
                                                          "and    e.Emp_EntidadID = '"& Ent &"'       "
 
                                                 sqlVP2 = "select count(s.Psm_Estatus) as TotVP2      " & _
@@ -171,7 +171,7 @@
                                                          "and   (s.Psm_SemaforoID = 'OBJHAB0010' or  " & _
                                                          "       s.Psm_SemaforoID = 'RETALM0010')    " & _
                                                          "and    e.Emp_NominaID < 10                 " & _
-                                                         "and    e.Emp_CompaniaID IN('2','10','11')  " & _
+                                                         "and    e.Emp_CompaniaID IN('2','10','11', '12')  " & _
                                                          "and    e.Emp_EntidadID = '"& Ent &"'       " & _
                                                          "and    s.Psm_Estatus > 1                   "
 
@@ -190,7 +190,7 @@
                                                          "       s.Psm_SemaforoID = 'DATGEN0080' or  " & _
                                                          "       s.Psm_SemaforoID = 'DATGEN0090')    " & _
                                                          "and    e.Emp_NominaID < 10                 " & _
-                                                         "and    e.Emp_CompaniaID IN('2','10','11')  " & _
+                                                         "and    e.Emp_CompaniaID IN('2','10','11', '12')  " & _
                                                          "and    e.Emp_EntidadID = '"& Ent &"'       "
 
                                                 sqlVP3 = "select count(s.Psm_Estatus) as TotVP3      " & _
@@ -208,7 +208,7 @@
                                                          "       s.Psm_SemaforoID = 'DATGEN0080' or  " & _
                                                          "       s.Psm_SemaforoID = 'DATGEN0090')    " & _
                                                          "and    e.Emp_NominaID < 10                 " & _
-                                                         "and    e.Emp_CompaniaID IN('2','10','11')  " & _
+                                                         "and    e.Emp_CompaniaID IN('2','10','11', '12')  " & _
                                                          "and    e.Emp_EntidadID = '"& Ent &"'       " & _
                                                          "and    s.Psm_Estatus > 1                   "
 
@@ -232,7 +232,7 @@
                                                          "where  e.Emp_CompaniaID = v.EmpresaFuente                      " & _
                                                          "and    e.Emp_EmpleadoID = v.Empleado                           " & _
                                                          "and    e.Emp_NominaID < 10                                     " & _
-                                                         "and    e.Emp_CompaniaID IN('2','10','11')                      " & _
+                                                         "and    e.Emp_CompaniaID IN('2','10','11', '12')                      " & _
                                                          "and    e.Emp_EntidadID = '"& Ent &"'                           " & _
                                                          "order by e.Emp_CompaniaID,  v.DescEntidad,                     " & _
                                                          "         v.DescCentroCosto, e.Emp_NombreCompleto               "
@@ -245,8 +245,8 @@
                                                          "and   (s.Psm_SemaforoID = 'MAT3600010' or  " & _
                                                          "       s.Psm_SemaforoID = 'APROBJ0010')    " & _
                                                          "and    e.Emp_NominaID < 10                 " & _
-                                                         "and    e.Emp_CompaniaID IN('2','10','11')  "
-                                                
+                                                         "and    e.Emp_CompaniaID IN('2','10','11', '12')  "
+
                                                 sqlVP1 = "select count(s.Psm_Estatus) as TotVP1      " & _
                                                          "from HRM10502 s, HRM10220 e                " & _
                                                          "where s.Psm_CompaniaID = e.Emp_CompaniaID  " & _
@@ -255,9 +255,9 @@
                                                          "and   (s.Psm_SemaforoID = 'MAT3600010' or  " & _
                                                          "       s.Psm_SemaforoID = 'APROBJ0010')    " & _
                                                          "and    e.Emp_NominaID < 10                 " & _
-                                                         "and    e.Emp_CompaniaID IN('2','10','11')  " & _
+                                                         "and    e.Emp_CompaniaID IN('2','10','11', '12')  " & _
                                                          "and    s.Psm_Estatus > 1                   "
-                                                
+
                                                 sqlTP2 = "select count(s.Psm_Estatus) as TotTP2      " & _
                                                          "from HRM10502 s, HRM10220 e                " & _
                                                          "where s.Psm_CompaniaID = e.Emp_CompaniaID  " & _
@@ -266,8 +266,8 @@
                                                          "and   (s.Psm_SemaforoID = 'OBJHAB0010' or  " & _
                                                          "       s.Psm_SemaforoID = 'RETALM0010')    " & _
                                                          "and    e.Emp_NominaID < 10                 " & _
-                                                         "and    e.Emp_CompaniaID IN('2','10','11')  "
-                                                
+                                                         "and    e.Emp_CompaniaID IN('2','10','11', '12')  "
+
                                                 sqlVP2 = "select count(s.Psm_Estatus) as TotVP2      " & _
                                                          "from HRM10502 s, HRM10220 e                " & _
                                                          "where s.Psm_CompaniaID = e.Emp_CompaniaID  " & _
@@ -276,9 +276,9 @@
                                                          "and   (s.Psm_SemaforoID = 'OBJHAB0010' or  " & _
                                                          "       s.Psm_SemaforoID = 'RETALM0010')    " & _
                                                          "and    e.Emp_NominaID < 10                 " & _
-                                                         "and    e.Emp_CompaniaID IN('2','10','11')  " & _
+                                                         "and    e.Emp_CompaniaID IN('2','10','11', '12')  " & _
                                                          "and    s.Psm_Estatus > 1                   "
-                                                
+
                                                 sqlTP3 = "select count(s.Psm_Estatus) as TotTP3      " & _
                                                          "from HRM10502 s, HRM10220 e                " & _
                                                          "where s.Psm_CompaniaID = e.Emp_CompaniaID  " & _
@@ -294,7 +294,7 @@
                                                          "       s.Psm_SemaforoID = 'DATGEN0080' or  " & _
                                                          "       s.Psm_SemaforoID = 'DATGEN0090')    " & _
                                                          "and    e.Emp_NominaID < 10                 " & _
-                                                         "and    e.Emp_CompaniaID IN('2','10','11')  "
+                                                         "and    e.Emp_CompaniaID IN('2','10','11', '12')  "
 
                                                 sqlVP3 = "select count(s.Psm_Estatus) as TotVP3      " & _
                                                          "from HRM10502 s, HRM10220 e                " & _
@@ -311,7 +311,7 @@
                                                          "       s.Psm_SemaforoID = 'DATGEN0080' or  " & _
                                                          "       s.Psm_SemaforoID = 'DATGEN0090')    " & _
                                                          "and    e.Emp_NominaID < 10                 " & _
-                                                         "and    e.Emp_CompaniaID IN('2','10','11')  " & _
+                                                         "and    e.Emp_CompaniaID IN('2','10','11', '12')  " & _
                                                          "and    s.Psm_Estatus > 1                   "
 
                                                 sqllis = "select e.Emp_CompaniaID,     e.Emp_EmpleadoID,   " & _
@@ -334,7 +334,7 @@
                                                          "where  e.Emp_CompaniaID = v.EmpresaFuente                      " & _
                                                          "and    e.Emp_EmpleadoID = v.Empleado                           " & _
                                                          "and    e.Emp_NominaID < 10                                     " & _
-                                                         "and    e.Emp_CompaniaID IN('2','10','11')                      " & _
+                                                         "and    e.Emp_CompaniaID IN('2','10','11', '12')                      " & _
                                                          "order by e.Emp_CompaniaID,  v.DescEntidad,                     " & _
                                                          "         v.DescCentroCosto, e.Emp_NombreCompleto               "
                                             end if

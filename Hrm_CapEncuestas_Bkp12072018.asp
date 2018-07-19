@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>HRM Verzatec | Encuestas - Alta de Encabezado</title>
+  <title>HRM Verzatec | Capacitacion - Encuestas - Alta de Encabezado</title>
   <link rel="shortcut icon" href="images/favicon.ico" />
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -33,11 +33,11 @@
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
-
   <% call men() %>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
     <%
     sqlTrn = "select Trd_ElementoID, Trd_Texto from HRM10002 where Trd_TransaccionID = 'CnfGrl0200' and Trd_IdiomaID = '"& Lng &"'  "
 
@@ -68,6 +68,12 @@
                 Fr1Sb1  = trim(rsTrn("Trd_Texto"))
               Case "Fr1Sb2"
                 Fr1Sb2  = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Sb3"
+                Fr1Sb3  = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Sb5"
+                Fr1Sb5  = trim(rsTrn("Trd_Texto"))
+              Case "Fr1Sb6"
+                Fr1Sb6  = trim(rsTrn("Trd_Texto"))
               Case "Fr1Lg1"
                 Fr1Lg1  = trim(rsTrn("Trd_Texto"))
               Case "Fr1Lg2"
@@ -93,7 +99,7 @@
     MsgAl1 = "El registro ya existe ..."
 
     if Bta = "A" then
-        sqlval = "select Sch_ScriptID from HRM10301                        " & _
+        sqlval = "select Sch_ScriptID from HRM10351                        " & _
                  "where  Sch_ScriptID = '"& trim(request.form("Sci")) &"'  " & _
                  "and    Sch_Tipo     = '"& trim(request.form("Ten")) &"'  "
         set rsv = dbconn.execute(sqlval)
@@ -105,7 +111,7 @@
             </script>
             <%
         else
-            sqlins = "insert into HRM10301                        " & _
+            sqlins = "insert into HRM10351                        " & _
                      "values ('"& trim(request.form("Sci")) &"',  " & _
                      "        '"& trim(request.form("Ten")) &"',  " & _
                      "        '"& trim(request.form("Scd")) &"')  "
@@ -117,7 +123,7 @@
     if Btm = "M" then
         for e = 1 to Ind
             if request.Form("elm"&e) = "on" then
-                sqldel = "delete from HRM10301                                   " & _
+                sqldel = "delete from HRM10351                                   " & _
                          "where Sch_ScriptID = '" & Request.Form("Lsci"&e) & "'  " & _
                          "and   Sch_Tipo     = '" & Request.Form("Lten"&e) & "'  "
                 set rs = dbconn.Execute (sqldel)
@@ -125,12 +131,10 @@
      		  end if
   	  next
     end if
-
     '<!-- Alta de Registros (fin) -->
 
     %>
-    <!-- Content Header (Page header) -->
-    <% call hdr(TitPri,SubTit) %>
+    <% call hdr("Encuestas","Alta de Encuestas") %>
 
     <!-- Main content -->
     <section class="content">
@@ -139,7 +143,7 @@
 
         <!-- Agregar Scripts -->
         <div class="box box-success">
-            <form action="Hrm_Encuestas.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid %>" name="form1" method="post">
+            <form action="Hrm_CapEncuestas.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid %>" name="form1" method="post">
                 <!-- form start -->
                 <div class="box-body">
                     <div class="row fontawesome-icon-list">
@@ -162,7 +166,7 @@
                                 <select class="form-control" size="1" id="Ten" name="Ten" required>
                                   <option class="form-control" value=""><%= Fr1Ph3 %></option>
                                   <%
-                                  sqlTen = "select * from HRM10310 order by Tpe_Descripcion"
+                                  sqlTen = "select * from HRM10360 order by Tpe_Descripcion"
                                   set rsTen = dbconn.execute(sqlTen)
                                   if not rsTen.bof and not rsTen.eof then
                                     Do while not rsTen.eof
@@ -190,75 +194,82 @@
                 </div>
                 <!-- /.box-body -->
             </form>
-        </div>
-        <%
-        sqlLis = "select e.*, t.Tpe_Descripcion from HRM10301 e, HRM10310 t where e.Sch_Tipo = t.Tpe_EncuestaID"
 
-        set rs = dbconn.Execute(sqlLis)
-        'response.write(sqlLis)
-        if not rs.bof and not rs.eof then
-            %>
-            <div class="box box-primary">
-                <form action="Hrm_Encuestas.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid %>" name="form2" method="post">
-                    <div class="box-header">
-                      <h3 class="box-title"><%= Fr1Lg2 %></h3>
-                    </div>
-                    <div class="box-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
+            <%
+            sqlLis = "select e.*, d.Tpe_Descripcion       " & _
+                    "from HRM10351 e, HRM10360 d         " & _
+                    "where e.Sch_Tipo = d.Tpe_EncuestaID " &_
+                    "order by Sch_Tipo, Sch_Descripcion  "
+            set rs = dbconn.Execute(sqlLis)
+            'response.write(sqlLis)
+            if not rs.bof and not rs.eof then
+                %>
+                <div class="box box-primary">
+                    <form action="Hrm_CapEncuestas.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid %>" name="form2" method="post">
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
                                     <th><%= Fr1Lb3 %></th>
                                     <th><%= Fr1Lb1 %></th>
                                     <th><%= Fr1Lb2 %></th>
+                                    <th>&nbsp;</th>
+                                    <th>&nbsp;</th>
                                     <th style="text-align: center; color: red; font-weight: bold">X</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <%
-                                i = 0
-                                do while not rs.eof
-                                    i = i + 1
-                                    %>
-                                    <tr>
-                                        <td>
-                                            <input type="hidden" name="<%= "Lsci"&i %>" id="<%= "Lsci"&i %>" value="<%= trim(rs("Sch_ScriptID")) %>" />
-                                            <input type="hidden" name="<%= "Lten"&i %>" id="<%= "Lten"&i %>" value="<%= trim(rs("Sch_Tipo")) %>" />
-                                            <a href="Hrm_Encuestas1.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid & "&Sci=" & trim(rs("Sch_ScriptID")) & "&Dsc=" & trim(rs("Sch_Descripcion")) & "&Ten=" & trim(rs("Sch_Tipo")) %>">
-                                                <%= trim(rs("Tpe_Descripcion")) %>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="Hrm_Encuestas1.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid & "&Sci=" & trim(rs("Sch_ScriptID")) & "&Dsc=" & trim(rs("Sch_Descripcion")) & "&Ten=" & trim(rs("Sch_Tipo")) %>">
-                                                <%= trim(rs("Sch_ScriptID")) %>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="Hrm_Encuestas1.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid & "&Sci=" & trim(rs("Sch_ScriptID")) & "&Dsc=" & trim(rs("Sch_Descripcion")) & "&Ten=" & trim(rs("Sch_Tipo")) %>">
-                                                <%= trim(rs("Sch_Descripcion")) %>
-                                            </a>
-                                        </td>
-                                        <td style="text-align: center">
-                                            <input type="checkbox" name="<%= "elm"&i %>" id="<%= "elm"&i %>"  />
-                                        </td>
                                     </tr>
+                                </thead>
+                                <tbody>
                                     <%
-                                    rs.movenext
-                                loop
-                                %>
-                            </tbody>
-                        </table>
-                        <div class="box-footer" style="text-align: center">
-                            <input type="hidden" name="Ind" id="Ind" value="<%= i %>" />
-                            <button type="submit" class="btn btn-primary" style="background-color: red " name="BtnMdf" id="BtnMdf" value="M"><%= Fr1Sb2 %></button>
+                                    i = 0
+                                    do while not rs.eof
+                                        i = i + 1
+                                        %>
+                                        <tr>
+                                            <td>
+                                                <input type="hidden" name="<%= "Lsci"&i %>" id="<%= "Lsci"&i %>" value="<%= trim(rs("Sch_ScriptID")) %>" />
+                                                <input type="hidden" name="<%= "Lten"&i %>" id="<%= "Lten"&i %>" value="<%= trim(rs("Sch_Tipo")) %>" />
+                                                <%= trim(rs("Tpe_Descripcion")) %>
+                                            </td>
+                                            <td>
+                                                <%= trim(rs("Sch_ScriptID")) %>
+                                            </td>
+                                            <td>
+                                                <%= trim(rs("Sch_Descripcion")) %>
+                                            </td>
+                                            <td>
+                                                <a href="Hrm_CapEncuestas1.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid & "&Sci=" & trim(rs("Sch_ScriptID")) & "&Dsc=" & trim(rs("Sch_Descripcion")) & "&Ten=" & trim(rs("Sch_Tipo")) %>" >
+                                                    <%= Fr1Sb3 %>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="Hrm_CapEncuestas4.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid & "&Sci=" & trim(rs("Sch_ScriptID")) & "&Dsc=" & trim(rs("Sch_Descripcion")) & "&Ten=" & trim(rs("Sch_Tipo")) %>" >
+                                                    <%= Fr1Sb6 %>
+                                                </a>
+                                            </td>
+                                            <td style="text-align: center">
+                                                <input type="checkbox" name="<%= "elm"&i %>" id="<%= "elm"&i %>"  />
+                                            </td>
+                                        </tr>
+                                        <%
+                                        rs.movenext
+                                    loop
+                                    %>
+                                </tbody>
+                            </table>
+                            <div class="box-footer" style="text-align: center">
+                                <input type="hidden" name="Ind" id="Ind" value="<%= i %>" />
+                                <button type="submit" class="btn btn-primary" style="background-color: red " name="BtnMdf" id="BtnMdf" value="M"><%= Fr1Sb2 %></button>
+                            </div>
                         </div>
-                    </div>
-                </form>
-            </div>
-            <%
-            rs.close
-            set rs = Nothing
-        end if
-        %>
+                    </form>
+                </div>
+                <%
+                rs.close
+                set rs = Nothing
+            end if
+            %>
+
+        </div>
 
         <!-- CONTENIDO PRINCIPAL FIN -->
     </section>
@@ -278,10 +289,6 @@
 <!-- DataTables -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->

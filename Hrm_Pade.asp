@@ -41,7 +41,7 @@
   <div class="content-wrapper">
     <%
     sqlTrn = "select Trd_ElementoID, Trd_Texto from HRM10002 where Trd_TransaccionID = 'EvPADE0050' and Trd_IdiomaID = '"& Lng &"'  "
-    
+
     set rsTrn = dbconn.execute(sqlTrn)
     if not rsTrn.eof and not rsTrn.bof then
         dim Elm
@@ -173,7 +173,7 @@
         end if
     end if
     '<!-- Alta de Registros (fin) -->
-    TitPri = "Parámetros PADE"
+
     %>
     <!-- Content Header (Page header) -->
     <% call hdr(TitPri,SubTit) %>
@@ -233,7 +233,7 @@
                 </div>
                 <!-- /.box-body -->
             </form>
-            
+
             <form action="#" name="form2" method="post">
                 <div class="box box-primary">
                     <div class="box-header">
@@ -289,9 +289,11 @@
                                                 <a class="btn btn-app">
                                                     <i class="fa fa-comments"></i> <%= Tb1Lb6 %>
                                                 </a>
+<!--
                                                 <a class="btn btn-app" href="Hrm_PadeLib.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid & "&Ejr=" & trim(rsl("Pde_Ejercicio")) & "&Dsc=" & trim(rsl("Pde_Descripcion")) %>">
                                                     <i class="fa fa-check-circle"></i> <%= Tb1Lb7 %>
                                                 </a>
+-->
                                             </td>
                                         </tr>
                                         <%

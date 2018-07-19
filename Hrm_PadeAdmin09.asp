@@ -14,11 +14,11 @@
 
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-  
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="bootstrap/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="bootstrap/css/ionicons.min.css">  
+  <link rel="stylesheet" href="bootstrap/css/ionicons.min.css">
 
   <!-- daterange picker -->
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
@@ -62,7 +62,7 @@
 
    '<!-- Buscamos las "etiquetas" para la seleccion del Empleado -->
     sqlTrn = "select Trd_ElementoID, Trd_Texto from HRM10002 where Trd_TransaccionID = 'EvPADE0100' and Trd_IdiomaID = '"& Lng &"' and Trd_ElementoID IN ('Fr1Lb1', 'Fr1Ph1', 'FrLgn1', 'SmBtn3', 'BxHd07') "
-    
+
     set rsTrn = dbconn.execute(sqlTrn)
     'response.write(sqlTrn)
     if not rsTrn.eof and not rsTrn.bof then
@@ -91,7 +91,7 @@
 
    '<!-- Buscamos las "etiquetas" para el Reporte Ejecutivo -->
     sqlTrn = "select Trd_ElementoID, Trd_Texto from HRM10002 where Trd_TransaccionID = 'EvPADE0200' and Trd_IdiomaID = '"& Lng &"'  "
-    
+
     set rsTrn = dbconn.execute(sqlTrn)
     'response.write(sqlTrn)
     if not rsTrn.eof and not rsTrn.bof then
@@ -446,6 +446,46 @@
                 Tb2St3 = trim(rsTrn("Trd_Texto"))
               Case "Tb2St4"
                 Tb2St4 = trim(rsTrn("Trd_Texto"))
+
+                Case "Nav001"
+                  Nav001 = trim(rsTrn("Trd_Texto"))
+                Case "Nav002"
+                  Nav002 = trim(rsTrn("Trd_Texto"))
+                Case "Nav003"
+                  Nav003 = trim(rsTrn("Trd_Texto"))
+                Case "Nav004"
+                  Nav004 = trim(rsTrn("Trd_Texto"))
+                Case "Nav005"
+                  Nav005 = trim(rsTrn("Trd_Texto"))
+
+                Case "Tab010"
+                  Tab010 = trim(rsTrn("Trd_Texto"))
+                Case "Tb10H1"
+                  Tb10H1 = trim(rsTrn("Trd_Texto"))
+                Case "Tb10H2"
+                  Tb10H2 = trim(rsTrn("Trd_Texto"))
+
+                Case "Tab011"
+                  Tab011 = trim(rsTrn("Trd_Texto"))
+                Case "Tb11H1"
+                  Tb11H1 = trim(rsTrn("Trd_Texto"))
+                Case "Tb11H2"
+                  Tb11H2 = trim(rsTrn("Trd_Texto"))
+                Case "Tb11H3"
+                  Tb11H3 = trim(rsTrn("Trd_Texto"))
+                Case "Tb11H4"
+                  Tb11H4 = trim(rsTrn("Trd_Texto"))
+                Case "Tb11H5"
+                  Tb11H5 = trim(rsTrn("Trd_Texto"))
+                Case "Tb11H6"
+                  Tb11H6 = trim(rsTrn("Trd_Texto"))
+                Case "Tb11H7"
+                  Tb11H7 = trim(rsTrn("Trd_Texto"))
+                Case "Tb11H8"
+                  Tb11H8 = trim(rsTrn("Trd_Texto"))
+                Case "Tb11H9"
+                  Tb11H9 = trim(rsTrn("Trd_Texto"))
+
               Case "SmBtn1"
                 SmBtn1  = trim(rsTrn("Trd_Texto"))
               Case "SmBtn2"
@@ -583,7 +623,7 @@
                                 <li class="active"><a href="#Listado" data-toggle="tab"><%= Opt009 %></a></li>
                                 <li><a href="Hrm_PadeAdmin09Pdf.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&EjerID=" & Ejr & "&Eid=" & Eid & "&Sid=" & Sid %>" target="_blank"><%= BxHd07 %></a></li>
                             </ul>
-                            
+
                             <div class="tab-content">
 
                                 <!-- Listado de Movimientos -->
@@ -618,7 +658,7 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                            
+
                                                     <div class="col-md-3 col-sm-4">
                                                         <div class="form-group">
                                                             <label style="color: #f00"><%= FrLgn1 %></label>
@@ -730,7 +770,7 @@
                                                         end if
                                                         %>
                                                         </div>
-                                        
+
                                                         <div class="col-md-4">
                                                         <%
                                                         sqlDin = "select a.*, b.Cpt_Descripcion as DscAid,  " & _
@@ -937,7 +977,7 @@
                                                         <div class="col-md-6">
                                                             <div class="box box-primary box-solid collapsed-box">
                                                                 <div class="box-header with-border">
-                                                                    <h3 class="box-title">Resultados Objetivos / Habilidades</h3>
+                                                                    <h3 class="box-title"><%= Tab010 %></h3>
                                                                     <div class="box-tools pull-right">
                                                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
                                                                     </div>
@@ -947,8 +987,8 @@
                                                                         <table class="table no-margin">
                                                                             <thead>
                                                                                 <tr>
-                                                                                    <th>PROCESO</th>
-                                                                                    <th>RESULTADO</th>
+                                                                                    <th><%= Tb10H1 %></th>
+                                                                                    <th><%= Tb10H2 %></th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
@@ -991,7 +1031,7 @@
                                                         <div class="col-md-6">
                                                             <div class="box box-info box-solid collapsed-box">
                                                                 <div class="box-header">
-                                                                    <h3 class="box-title">Acciones de Retroalimentacion</h3>
+                                                                    <h3 class="box-title"><%= Tab011 %></h3>
                                                                     <div class="box-tools pull-right">
                                                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
                                                                     </div>
@@ -1023,10 +1063,10 @@
                                                                     <table class="table table-bordered table-striped">
                                                                         <thead>
                                                                         <tr>
-                                                                            <th>Tipo Accion</th>
-                                                                            <th>Prioridad</th>
-                                                                            <th>Area</th>
-                                                                            <th>Accion</th>
+                                                                            <th><%= Tb11H1 %></th>
+                                                                            <th><%= Tb11H2 %></th>
+                                                                            <th><%= Tb11H3 %></th>
+                                                                            <th><%= Tb11H5 %></th>
                                                                         </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -1147,7 +1187,7 @@
             };
 
 
-        
+
             window.onload = function() {
             var ctx1 = document.getElementById("canvasPG").getContext("2d");
             window.myLine = new Chart(ctx1).Bar(barChartDataPG, {
@@ -1162,18 +1202,18 @@
 	            legendBorders : true,
 	            legendBordersWidth : 1,
     	        legendBordersColors : "#666",
-	            annotateDisplay : true, 
+	            annotateDisplay : true,
 	            logarithmic: true
-		    
+
             });
 
-        
+
             }
 	    </script>
-        
+
 <script>
     function ClkTab(){
-       
+
             var barChartDataPG1 = {
 		    labels : ['PADE 2016','PADE 2017'],
 		    datasets : [
@@ -1201,7 +1241,7 @@
 	            legendBorders : true,
 	            legendBordersWidth : 1,
     	        legendBordersColors : "#666",
-	            annotateDisplay : true, 
+	            annotateDisplay : true,
 	            logarithmic: true
                 });
     }

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>HRM Verzatec | Capacitacion Encuestas - Alta de Reactivos</title>
+<title>HRM Verzatec | Capacitacion Encuestas - Asignacion de Puestos</title>
 <link rel="shortcut icon" href="images/favicon.ico" />
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -87,6 +87,8 @@
               Fr1Sb2  = trim(rsTrn("Trd_Texto"))
             Case "Fr1Sb4"
               Fr1Sb4  = trim(rsTrn("Trd_Texto"))
+            Case "Fr1Sb5"
+              TitCrt  = trim(rsTrn("Trd_Texto"))
             Case "Fr1Lg1"
               Fr1Lg1  = trim(rsTrn("Trd_Texto"))
             Case "Fr1Lg2"
@@ -187,16 +189,14 @@
 
 
   <% SubTit = " - " & Dsc %>
-  <% call hdr(TitSec, SubTit) %>
+  <% call hdr(TitCrt, SubTit) %>
 
   <!-- Main content -->
   <section class="content">
 
       <!-- CONTENIDO PRINCIPAL INICIO -->
-
-      <!-- Agregar Scripts -->
       <div class="box box-success">
-          <form action="Hrm_CapEncuestas1.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid %>" name="form1" method="post">
+          <form action="Hrm_CapEncuestas3.asp?Mdl=<%= Mdl & "&Trn=" & Trn & "&Sid=" & Sid %>" name="form1" method="post">
               <!-- form start -->
               <div class="box-body">
                   <div class="row fontawesome-icon-list">
