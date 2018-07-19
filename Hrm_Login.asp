@@ -42,16 +42,16 @@
     dim cn
     Usr = trim(Request.Form("UserID"))
     Pwd = trim(Request.Form("Password"))
-    'cn = "Provider=SQLOLEDB;Server=LTVMS;Database=HRM;Uid=sa;Password=Admin01*;"
+    cn = "Provider=SQLOLEDB;Server=LTVMS;Database=HRM;Uid=sa;Password=Admin01*;"
 '    cn = "Provider=SQLOLEDB;Server=172.28.100.11;Database=HRM;Uid=usrjob;Password=Vztjob2010;"
-    'cnk = "Provider=SQLOLEDB;Server=172.28.100.11;Database=kiosco;Uid=usrjob;Password=Vztjob2010;"
-    cn = "Provider=SQLOLEDB;Server=184.168.194.75;Database=Eryseg01;Uid=Eryseg_sa;Password=Admin01*;"
-
+    cnk = "Provider=SQLOLEDB;Server=172.28.100.11;Database=kiosco;Uid=usrjob;Password=Vztjob2010;"
+'    cn = "Provider=SQLOLEDB;Server=184.168.194.75;Database=Eryseg01;Uid=Eryseg_sa;Password=Admin01*;"
+    
     set dbconn = server.CreateObject("ADODB.Connection")
     dbconn.open cn
 
-    'set dbconnk = server.CreateObject("ADODB.Connection")
-    'dbconnk.open cnk
+    set dbconnk = server.CreateObject("ADODB.Connection")
+    dbconnk.open cnk
 
     sqlEqv = "select * from HRM10220B where Emp_EmpleadoID = '"& Usr &"' "
     set rsEqv = dbconn.execute(sqlEqv)
@@ -59,11 +59,8 @@
         Usr = trim(rsEqv("Emp_Equivalencia"))
     end if
 
-'    sqlLgn = "select ID_Usuario from IN_Usuarios where Empleado = '"& Usr &"' and Contrasena = '"& Pwd &"' "
-'    set rsK = dbconnk.execute(sqlLgn)
-    sqlLgn = "select Emp_EmpleadoID from HRM10220 where Emp_EmpleadoID = '"& Usr &"' and Emp_Password = '"& Pwd &"' "
-    set rsK = dbconn.execute(sqlLgn)
-
+    sqlLgn = "select ID_Usuario from IN_Usuarios where Empleado = '"& Usr &"' and Contrasena = '"& Pwd &"' "
+    set rsK = dbconnk.execute(sqlLgn)
     if not rsk.bof and not rsk.eof then
         sqlLog = "select a.Emp_EmpleadoID, a.Emp_NombreCompleto,  " & _
                  "       a.Emp_CompaniaID, a.Emp_Foto,            " & _
@@ -142,7 +139,7 @@
             set rsL = Nothing
             set rs  = Nothing
             set rsI = Nothing
-
+        
             %>
             <form action="index.asp" name="form1" method="post">
                 <input type="hidden" name="Sid" value="<%= rdm %>" />
@@ -172,7 +169,7 @@
         <input type="password" name="Password" id="Password" class="form-control" placeholder="Contraseña / Password" required>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
-
+      
       <div class="form-group" style="text-align: center">
           <label style="color: #f00">Usuario o Password Incorreccto</label>
           <label style="color: #f00">Wrong Employee ID or Password.</label>

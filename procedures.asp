@@ -10,11 +10,11 @@ dim Pth
 dim lnki
 dim lnke
 
-'cn = "Provider=SQLOLEDB;Server=LTVMS;Database=HRM;Uid=sa;Password=Admin01*;"
+cn = "Provider=SQLOLEDB;Server=LTVMS;Database=HRM;Uid=sa;Password=Admin01*;"
 'cn = "Provider=SQLOLEDB;Server=172.28.100.11;Database=HRMqas;Uid=usrjob;Password=Vztjob2010;"
 'cn = "Provider=SQLOLEDB;Server=172.28.100.11;Database=HRM;Uid=usrjob;Password=Vztjob2010;"
-'vt = "Provider=SQLOLEDB;Server=172.28.100.11;Database=ORGANIZACION_VZT;Uid=usrjob;Password=Vztjob2010;"
-cn = "Provider=SQLOLEDB;Server=184.168.194.75;Database=Eryseg01;Uid=Eryseg_sa;Password=Admin01*;"
+vt = "Provider=SQLOLEDB;Server=172.28.100.11;Database=ORGANIZACION_VZT;Uid=usrjob;Password=Vztjob2010;"
+'cn = "Provider=SQLOLEDB;Server=184.168.194.75;Database=Eryseg01;Uid=Eryseg_sa;Password=Admin01*;"
 lnki = "http://172.28.100.5/Hrm/index.htm"
 lnke = "http://online.verzatec.com/Hrm/index.htm"
 
@@ -173,7 +173,7 @@ Sub men()
                   %><span class="label label-danger"><%= Tsk %></span><%
               end if
               %>
-
+                
             </a>
             <ul class="dropdown-menu">
               <%
@@ -276,7 +276,7 @@ Sub men()
                             <%= trim(rslng("Idm_Descripcion")) %>
                           </h4>
                         </a>
-                      </li>
+                      </li>                        
                       <%
                       rslng.movenext
                     loop
@@ -383,14 +383,14 @@ On Error Resume Next
           else
               MdlT = ""
           end if
-          if MdlT = Mdl then
+          if MdlT = Mdl then 
               %>
               <li class="treeview active">
               <%
           else
               %>
               <li class="treeview">
-              <%
+              <% 
           end if
           %>
           <a href="index.asp?Sid=<%= Sid & "&Mdl=" & Mdl & "&Trn=" & Trn %>">
